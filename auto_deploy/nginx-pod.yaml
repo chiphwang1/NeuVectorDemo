@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-webui
+  namespace: demo
+spec:
+  ports:
+    - port: 80
+      name: webui
+      protocol: TCP
+  type: NodePort
+  selector:
+    app: nginx-pod
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-pod
+  namespace: demo
+spec:
+  template:
+    metadata:
+      labels:
+        app: nginx-pod
+    spec:
+      containers:
+      - name: nginx-pod
+        image: nvbeta/swarm_nginx
+        ports:
+        - containerPort: 80
+          protocol: TCP
