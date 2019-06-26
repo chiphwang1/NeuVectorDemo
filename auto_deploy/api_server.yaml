@@ -51,7 +51,7 @@ spec:
       containers:
       - args:
         - /bin/bash
-        image: nvbeta//api_server
+        image: nvbeta/api_server
         imagePullPolicy: Always
         name: api-server
         resources: {}
